@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jentle_flutter/demo/basic_demo.dart';
 import 'demo/list_view_demo.dart';
-import 'demo/hello_demo.dart';
 
 void main() => runApp(MyApp());
 // void main(){
@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
          ),
          body: TabBarView(
            children: <Widget>[
-             Icon(Icons.local_cafe,size:128.0,color: Colors.black12),
-             Icon(Icons.local_cafe,size:128.0,color: Colors.black12),
+             ListViewDemo(),
+             BasicDemo(),
              Icon(Icons.local_cafe,size:128.0,color: Colors.black12),
            ],
          ),
