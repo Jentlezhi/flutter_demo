@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
 
 void main() => runApp(MyApp());
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
            children: <Widget>[
              ListViewDemo(),
              BasicDemo(),
-             Icon(Icons.local_cafe,size:128.0,color: Colors.black12),
+             LayoutDemo()
            ],
          ),
          drawer: Drawer(
