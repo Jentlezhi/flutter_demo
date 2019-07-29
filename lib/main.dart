@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'demo/grid_view_build.dart';
+import 'demo/grid_view_demo.dart';
+import 'demo/grid_view_extent.dart';
 import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
+import 'demo/view_demo.dart';
 
 void main() => runApp(MyApp());
 // void main(){
@@ -14,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 7,
       child: MaterialApp(
       /// 脚手架
        home: Scaffold(
@@ -47,7 +51,11 @@ class MyApp extends StatelessWidget {
              tabs: <Widget>[
                Tab(icon: Icon(Icons.search)),
                Tab(icon: Icon(Icons.face)),
-               Tab(icon: Icon(Icons.favorite))
+               Tab(icon: Icon(Icons.favorite)),
+               Tab(icon: Icon(Icons.view_quilt),),
+               Tab(icon: Icon(Icons.view_week),),
+               Tab(icon: Icon(Icons.voice_chat),),
+               Tab(icon: Icon(Icons.school),),
              ],
            ),
          ),
@@ -55,7 +63,11 @@ class MyApp extends StatelessWidget {
            children: <Widget>[
              ListViewDemo(),
              BasicDemo(),
-             LayoutDemo()
+             LayoutDemo(),
+             ViewDemo(),
+             GridViewDemo(),
+             GridViewExtentDemo(),
+             GridViewBuildDemo(),
            ],
          ),
          drawer: Drawer(
@@ -83,12 +95,12 @@ class MyApp extends StatelessWidget {
              ],
            ),
          ),
-         bottomNavigationBar: BottomNavigationBar(
-           items: [
-             BottomNavigationBarItem(title: Text('A'), icon: Icon(Icons.add)),
-             BottomNavigationBarItem(title: Text('A'), icon: Icon(Icons.add)),
-           ],
-         ),
+        //  bottomNavigationBar: BottomNavigationBar(
+        //    items: [
+        //      BottomNavigationBarItem(title: Text('A'), icon: Icon(Icons.add)),
+        //      BottomNavigationBarItem(title: Text('A'), icon: Icon(Icons.add)),
+        //    ],
+        //  ),
        ),
        theme: ThemeData(
          primaryColor: Colors.red
