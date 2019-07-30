@@ -5,6 +5,7 @@ import 'demo/grid_view_demo.dart';
 import 'demo/grid_view_extent.dart';
 import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
+import 'demo/navigator_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/view_demo.dart';
 
@@ -22,14 +23,19 @@ class MyApp extends StatelessWidget {
       length: 7,
       child: MaterialApp(
       /// 脚手架
-          home: SliverDemo(),
+          // home: NavigatorDemo(),
+          initialRoute: '/',
+          routes: {
+            '/':(BuildContext context) => ListViewDemo(),
+            '/about':(BuildContext context) => Page(title: 'About',),
+          },
       //  home: Scaffold(
       //    appBar: AppBar(
       //     //  leading: IconButton(
       //     //    icon: Icon(Icons.menu),
       //     //    onPressed: (){
       //     //      print('press');
-      //     //    }, 
+      //     //    },
       //     //  ),
       //      actions: <Widget>[
       //        IconButton(

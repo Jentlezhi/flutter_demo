@@ -16,7 +16,7 @@ class _BasicDemoState extends State<BasicDemo> {
           image: DecorationImage(
               image: NetworkImage(
                   'https://photo.16pic.com/00/54/12/16pic_5412218_b.jpg'),
-              fit: BoxFit.cover    
+              fit: BoxFit.cover
                   )),
       child: Column(
         ///主轴方向
