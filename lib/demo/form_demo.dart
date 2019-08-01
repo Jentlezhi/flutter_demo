@@ -91,9 +91,15 @@ class _RegisterFromState extends State<RegisterFrom> {
  }
   void _submitRegister(){
     registerFormKey.currentState.save();
-    registerFormKey.currentState.validate();
-    debugPrint('username:$userName');
-    debugPrint('passWord:$passWord');
+    if(registerFormKey.currentState.validate()){
+     debugPrint('username:$userName');
+     debugPrint('passWord:$passWord');
+     Scaffold.of(context).showSnackBar(
+       SnackBar(
+         content: Text('Registering...'),
+       )
+     );
+    }
   }
 }
 
