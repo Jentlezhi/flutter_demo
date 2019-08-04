@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           // home: NavigatorDemo(),
           initialRoute: '/',
           routes: {
-            '/':(BuildContext context) => DialogDemo(),
+            '/':(BuildContext context) => AlertDialogDemo(),
             '/about':(BuildContext context) => Page(title: 'About',),
           },
       //  home: Scaffold(
