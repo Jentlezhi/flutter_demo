@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'demo/dialog_alert_demo.dart';
 import 'demo/dialog_demo.dart';
 import 'demo/form_demo.dart';
 import 'demo/grid_view_build.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           // home: NavigatorDemo(),
           initialRoute: '/',
           routes: {
-            '/':(BuildContext context) => DialogDemo(),
+            '/':(BuildContext context) => DialogAlertDemo(),
             '/about':(BuildContext context) => Page(title: 'About',),
           },
       //  home: Scaffold(
