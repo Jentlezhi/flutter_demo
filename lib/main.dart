@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           // home: NavigatorDemo(),
           initialRoute: '/',
           routes: {
-            '/':(BuildContext context) => DialogAlertDemo(),
+            '/':(BuildContext context) => AlertDialogDemo(),
             '/about':(BuildContext context) => Page(title: 'About',),
           },
       //  home: Scaffold(
