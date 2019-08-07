@@ -90,7 +90,7 @@ class AlertDialogDemo extends StatefulWidget {
 class _AlertDialogDemoState extends State<AlertDialogDemo> {
   String _choice = 'Nothing';
   Future _showAlert()async {
-     final result = await showDialog(
+      final result = await showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
@@ -98,13 +98,13 @@ class _AlertDialogDemoState extends State<AlertDialogDemo> {
             content: Text('Are you sure about this?'),
             actions: <Widget>[
               FlatButton(
-                child: Text('ok'),
+                child: Text('Ok'),
                 onPressed: (){
                   Navigator.pop(context,Action.Ok);
                 },
               ),
               FlatButton(
-                child: Text('cancel'),
+                child: Text('Cancel'),
                 onPressed: (){
                   Navigator.pop(context,Action.Cancel);
                 },
