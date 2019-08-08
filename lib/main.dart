@@ -11,6 +11,7 @@ import 'demo/grid_view_demo.dart';
 import 'demo/grid_view_extent.dart';
 import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
+import 'demo/material_components.dart';
 import 'demo/navigator_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/view_demo.dart';
@@ -30,10 +31,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/',
+          initialRoute: '/mdc',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/about':(BuildContext context) => Page(title: 'About',),
+            '/mdc': (BuildContext context) => MaterialComponentsDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
