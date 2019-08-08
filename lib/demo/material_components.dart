@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jentle_flutter/demo/popup_menu_demo.dart';
 
 class MaterialComponentsDemo extends StatelessWidget {
   @override
@@ -16,6 +17,10 @@ class MaterialComponentsDemo extends StatelessWidget {
             ListItem(
               title: 'Button',
               page: ButtonDemo(),
+            ),
+            ListItem(
+              title: 'PopupMenu',
+              page: PopupMenuDemo(),
             )
           ],
         ));
