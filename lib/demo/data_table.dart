@@ -9,13 +9,13 @@ class DataTableDemo extends StatefulWidget {
 }
 
 class _DataTableDemoState extends State<DataTableDemo> {
-
   int _sortColumnIndex;
   bool _sortAscending = false;
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,11 +71,6 @@ class _DataTableDemoState extends State<DataTableDemo> {
               padding: EdgeInsets.only(left: 10.0, top: 10.0),
               child: Text('列表生成表格'),
             ),
-            /*
-            this.sortColumnIndex,
-            this.sortAscending = true,
-            this.onSelectAll,
-            */
             DataTable(
               sortColumnIndex: _sortColumnIndex,
               sortAscending: _sortAscending,
@@ -107,29 +102,130 @@ class _DataTableDemoState extends State<DataTableDemo> {
               ],
               rows: posts.map((post) {
                 return DataRow(
-                  selected: post.selected,
-                  onSelectChanged: (value){
+                    selected: post.selected,
+                    onSelectChanged: (value) {
+                      setState(() {
+                        post.selected = value;
+                      });
+                    },
+                    cells: [
+                      DataCell(
+                        Text(post.title),
+                      ),
+                      DataCell(
+                        Text(post.author),
+                      ),
+                      DataCell(
+                        Container(
+                          // width: 60,
+                          height: 30.0,
+                          color: randomColor(),
+                          // child: Image.network(post.imageUrl,fit: BoxFit.cover,),
+                        ),
+                      ),
+                    ]);
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PostDataSource extends DataTableSource {
+  int _selectedRowCount = 0;
+
+  @override
+  DataRow getRow(int index) {
+    final post = posts[index];
+    return DataRow.byIndex(
+      index: index,
+      cells: <DataCell>[
+        DataCell(
+          Text(post.title),
+        ),
+        DataCell(
+          Text(post.author),
+        ),
+        DataCell(
+          Container(
+            // width: 60,
+            height: 30.0,
+            color: randomColor(),
+            // child: Image.network(post.imageUrl,fit: BoxFit.cover,),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  int get rowCount => posts.length;
+
+  @override
+  bool get isRowCountApproximate => false;
+
+  @override
+  int get selectedRowCount => _selectedRowCount;
+}
+
+class PaginatedDataTableDemo extends StatefulWidget {
+  @override
+  _PaginatedDataTableDemoState createState() =>
+      new _PaginatedDataTableDemoState();
+}
+
+class _PaginatedDataTableDemoState extends State<PaginatedDataTableDemo> {
+  final PostDataSource _postDataSource = PostDataSource();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('PaginatedDataTable'),
+      ),
+      body: Container(
+        child: ListView(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 10.0, top: 10.0),
+              child: Text('分页表格'),
+            ),
+            PaginatedDataTable(
+              rowsPerPage: 8,
+              header: Text('Posts'),
+              columns: [
+                DataColumn(
+                  label: Text('Title'),
+                  onSort: (int columnIndex, bool ascending) {
+                    print('columnIndex:$columnIndex,ascending:$ascending');
                     setState(() {
-                      post.selected = value;
+                      // _sortColumnIndex = 0;
+                      // _sortAscending = ascending;
+                      posts.sort((a, b) {
+                        if (!ascending) {
+                          final c = a;
+                          a = b;
+                          b = c;
+                        }
+                        return a.title.length.compareTo(b.title.length);
+                      });
                     });
                   },
-                  cells: [
-                  DataCell(
-                    Text(post.title),
-                  ),
-                  DataCell(
-                    Text(post.author),
-                  ),
-                  DataCell(
-                    Container(
-                      // width: 60,
-                      height: 30.0,
-                      color: randomColor(),
-                      // child: Image.network(post.imageUrl,fit: BoxFit.cover,),
-                    ),
-                  ),
-                ]);
-              }).toList(),
+                ),
+                DataColumn(
+                  label: Text('Author'),
+                ),
+                DataColumn(
+                  label: Text('Image'),
+                ),
+              ],
+              source: _postDataSource,
             ),
           ],
         ),

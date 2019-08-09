@@ -33,13 +33,14 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/table',
+          initialRoute: '/paginatedTable',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/about':(BuildContext context) => Page(title: 'About',),
             '/mdc': (BuildContext context) => MaterialComponentsDemo(),
             '/chip': (BuildContext context) => ChipDemo(),
             '/table': (BuildContext context) => DataTableDemo(),
+            '/paginatedTable': (BuildContext context) => PaginatedDataTableDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
