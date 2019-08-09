@@ -4,6 +4,7 @@ import 'demo/bottom_sheet_demo.dart';
 import 'demo/bottom_sheet_dialog.dart';
 import 'demo/build_context_demo.dart';
 import 'demo/chip_demo.dart';
+import 'demo/data_table.dart';
 import 'demo/dialog_alert_demo.dart';
 import 'demo/dialog_demo.dart';
 import 'demo/form_demo.dart';
@@ -32,12 +33,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/chip',
+          initialRoute: '/table',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/about':(BuildContext context) => Page(title: 'About',),
             '/mdc': (BuildContext context) => MaterialComponentsDemo(),
             '/chip': (BuildContext context) => ChipDemo(),
+            '/table': (BuildContext context) => DataTableDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
