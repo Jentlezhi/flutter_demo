@@ -150,10 +150,9 @@ class PostDataSource extends DataTableSource {
         ),
         DataCell(
           Container(
-            // width: 60,
-            height: 30.0,
+            width: 60,
             color: randomColor(),
-            // child: Image.network(post.imageUrl,fit: BoxFit.cover,),
+            // child: Image.network(post.imageUrl,height: 40.0,fit: BoxFit.cover,),
           ),
         ),
       ],
