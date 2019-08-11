@@ -17,6 +17,7 @@ import 'demo/list_view_demo.dart';
 import 'demo/material_components.dart';
 import 'demo/navigator_demo.dart';
 import 'demo/sliver_demo.dart';
+import 'demo/state/state_management_demo.dart';
 import 'demo/stepper_demo.dart';
 import 'demo/view_demo.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/stepper',
+          initialRoute: '/state_management',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/list':(BuildContext context) => ListViewDemo(),
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
             '/paginatedTable': (BuildContext context) => PaginatedDataTableDemo(),
             '/card': (BuildContext context) => CardDemo(),
             '/stepper': (BuildContext context) => StepperDemo(),
-            
+            '/state_management': (BuildContext context) => StateManageMentDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
