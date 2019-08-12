@@ -19,40 +19,54 @@ class StreamDemoHome extends StatefulWidget {
 }
 
 class _StreamDemoHomeState extends State<StreamDemoHome> {
-
   StreamSubscription _subscriptionDemo;
 
   StreamController<String> _streamControllerDemo;
 
   StreamSink _sinkDemo;
 
+  String _data = '...';
+
   @override
   void dispose() {
     _streamControllerDemo.close();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
     print('Creata a stream.');
     // Stream<String> _streamDemo = Stream.fromFuture(fetchData());
-    _streamControllerDemo = StreamController();
+    // _streamControllerDemo = StreamController();
+    ///多次订阅：多播
+    _streamControllerDemo = StreamController.broadcast();
     _sinkDemo = _streamControllerDemo.sink;
     print('Strat listening on a stream.');
     // _subscriptionDemo = _streamDemo.listen(onData,onError: onError, onDone:onDone);
-    _subscriptionDemo = _streamControllerDemo.stream.listen(onData,onError: onError, onDone:onDone);
+    _subscriptionDemo = _streamControllerDemo.stream
+        .listen(onData, onError: onError, onDone: onDone);
+    _streamControllerDemo.stream
+        .listen(onDataTwo, onError: onError, onDone: onDone);
     print('Initialize completed.');
   }
 
-  void onData(String data){
+  void onData(String data) {
     print('$data');
+    setState(() {
+      _data = data;
+    });
   }
 
-  void onError(error){
+  void onDataTwo(String data) {
+    print('ondataTwo:$data');
+  }
+
+  void onError(error) {
     print('Error:$error');
   }
 
-  void onDone(){
+  void onDone() {
     print('Done!');
   }
 
@@ -62,18 +76,18 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
     return 'Hello!';
   }
 
-  void _pauseStream(){
+  void _pauseStream() {
     print('Pause subscription');
     _subscriptionDemo.pause();
   }
 
-  void _resumeStream(){
+  void _resumeStream() {
     print('Resume subscription');
     _subscriptionDemo.resume();
   }
 
-///取消订阅没法再恢复
-  void _cancelStream(){
+  ///取消订阅没法再恢复
+  void _cancelStream() {
     print('Cancel subscription');
     _subscriptionDemo.cancel();
   }
@@ -89,24 +103,30 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlatButton(
-              child: Text('Add'),
-              onPressed: _addDataToStream,
-            ),
-            FlatButton(
-              child: Text('Pause'),
-              onPressed: _pauseStream,
-            ),
-            FlatButton(
-              child: Text('Resume'),
-              onPressed: _resumeStream,
-            ),
-            FlatButton(
-              child: Text('Cancel'),
-              onPressed: _cancelStream,
+            Text('$_data'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FlatButton(
+                  child: Text('Add'),
+                  onPressed: _addDataToStream,
+                ),
+                FlatButton(
+                  child: Text('Pause'),
+                  onPressed: _pauseStream,
+                ),
+                FlatButton(
+                  child: Text('Resume'),
+                  onPressed: _resumeStream,
+                ),
+                FlatButton(
+                  child: Text('Cancel'),
+                  onPressed: _cancelStream,
+                ),
+              ],
             ),
           ],
         ),
