@@ -20,6 +20,7 @@ import 'demo/sliver_demo.dart';
 import 'demo/state/scoped_model_demo.dart';
 import 'demo/state/state_management_demo.dart';
 import 'demo/stepper_demo.dart';
+import 'demo/stream/stream_demo.dart';
 import 'demo/view_demo.dart';
 
 void main() => runApp(MyApp());
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/scoped_state_management',
+          initialRoute: '/stream',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/list':(BuildContext context) => ListViewDemo(),
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             '/stepper': (BuildContext context) => StepperDemo(),
             '/state_management': (BuildContext context) => StateManageMentDemo(),
             '/scoped_state_management': (BuildContext context) => ScopedModelStateManageMent(),
-          
+            '/stream': (BuildContext context) => StreamDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
