@@ -21,7 +21,7 @@ class _RxDartDemoState extends State<RxDartDemo> {
     // Observable.fromFuture(Future.value('future_hello'));
     // Observable.just('hello');
     // Observable.periodic(Duration(seconds: 2),(x) => x.toString());
-    _observable.listen(_onData);
+    _observable.every((item) => item < 6).asObservable().listen(_onData);
 
     // PublishSubject<String> _subject = PublishSubject<String>();
   }
