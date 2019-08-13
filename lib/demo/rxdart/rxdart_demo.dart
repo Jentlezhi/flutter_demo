@@ -7,14 +7,17 @@ class RxDartDemo extends StatefulWidget {
 }
 
 class _RxDartDemoState extends State<RxDartDemo> {
-
   List<String> _listData = [];
   @override
   void initState() {
     super.initState();
-    Observable<int> _observable = 
-    Observable(
-        Stream.fromIterable([1, 2, 3, 4, 5, 6])).map((item)=>item*item).interval(Duration(seconds: 1));
+    Observable<int> _observable = Observable.merge([
+      Observable.timer(1,Duration(seconds: 2)),
+      Stream.fromIterable([2, 4, 6]),
+      Stream.fromIterable([3, 6, 9])
+    ]).interval(Duration(seconds: 1));
+    // Observable(
+    // Stream.fromIterable([1, 2, 3, 4, 5, 6])).map((item)=>item*item).interval(Duration(seconds: 1));
     // Observable.fromFuture(Future.value('future_hello'));
     // Observable.just('hello');
     // Observable.periodic(Duration(seconds: 2),(x) => x.toString());
