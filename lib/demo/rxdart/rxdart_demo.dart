@@ -11,7 +11,7 @@ class _RxDartDemoState extends State<RxDartDemo> {
   @override
   void initState() {
     super.initState();
-    Observable<int> _observable = Observable.merge([
+    Observable<int> _observable = Observable.concat([
       Observable.timer(1,Duration(seconds: 2)),
       Stream.fromIterable([2, 4, 6]),
       Stream.fromIterable([3, 6, 9])
