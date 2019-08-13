@@ -11,23 +11,36 @@ class _RxDartDemoState extends State<RxDartDemo> {
   @override
   void initState() {
     super.initState();
-    Observable<int> _observable = Observable.concat([
-      Observable.timer(1,Duration(seconds: 2)),
-      Stream.fromIterable([2, 4, 6]),
-      Stream.fromIterable([3, 6, 9])
-    ]).interval(Duration(seconds: 1));
+    // Observable<int> _observable = Observable.concat([
+    //   Observable.timer(1,Duration(seconds: 2)),
+    //   Stream.fromIterable([2, 4, 6]),
+    //   Stream.fromIterable([3, 6, 9])
+    // ]).interval(Duration(seconds: 1));
     // Observable(
     // Stream.fromIterable([1, 2, 3, 4, 5, 6])).map((item)=>item*item).interval(Duration(seconds: 1));
     // Observable.fromFuture(Future.value('future_hello'));
     // Observable.just('hello');
     // Observable.periodic(Duration(seconds: 2),(x) => x.toString());
-    _observable.every((item) => item < 6).asObservable().listen(_onData);
+    // _observable.every((item) => item < 6).asObservable().listen(_onData);
 
-    // PublishSubject<String> _subject = PublishSubject<String>();
+    ///先订阅，再添加数据
+    PublishSubject<String> _subject = PublishSubject<String>();
+    _subject.listen(_onDataOne);
+    _subject.add('one');
+    _subject.listen(_onData);
+    _subject.add('two');
+    _subject.add('three');
   }
 
   void _onData(data) {
     print('$data');
+    setState(() {
+      _listData.add('$data');
+    });
+  }
+
+    void _onDataOne(data) {
+    print('onDataOne:$data');
     setState(() {
       _listData.add('$data');
     });
