@@ -16,6 +16,7 @@ import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
 import 'demo/material_components.dart';
 import 'demo/navigator_demo.dart';
+import 'demo/rxdart/rxdart_demo.dart';
 import 'demo/sliver_demo.dart';
 import 'demo/state/scoped_model_demo.dart';
 import 'demo/state/state_management_demo.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/stream',
+          initialRoute: '/rxdart',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/list':(BuildContext context) => ListViewDemo(),
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
             '/state_management': (BuildContext context) => StateManageMentDemo(),
             '/scoped_state_management': (BuildContext context) => ScopedModelStateManageMent(),
             '/stream': (BuildContext context) => StreamDemo(),
+            '/rxdart': (BuildContext context) => RxDartDemo(),
           },
       //  home: Scaffold(
       //    appBar: AppBar(
