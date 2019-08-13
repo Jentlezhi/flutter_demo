@@ -12,9 +12,9 @@ class _RxDartDemoState extends State<RxDartDemo> {
   @override
   void initState() {
     super.initState();
-    Observable<String> _observable = 
+    Observable<int> _observable = 
     Observable(
-        Stream.fromIterable(['hello', '你好', 'nice', 'to', 'meet', 'you'])).interval(Duration(seconds: 1));
+        Stream.fromIterable([1, 2, 3, 4, 5, 6])).map((item)=>item*item).interval(Duration(seconds: 1));
     // Observable.fromFuture(Future.value('future_hello'));
     // Observable.just('hello');
     // Observable.periodic(Duration(seconds: 2),(x) => x.toString());
