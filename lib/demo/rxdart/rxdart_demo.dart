@@ -7,19 +7,27 @@ class RxDartDemo extends StatefulWidget {
 }
 
 class _RxDartDemoState extends State<RxDartDemo> {
+
+  List<String> _listData = [];
   @override
   void initState() {
     super.initState();
     Observable<String> _observable = 
-    // Observable(Stream.fromIterable(['hello','你好']));
+    Observable(
+        Stream.fromIterable(['hello', '你好', 'nice', 'to', 'meet', 'you'])).interval(Duration(seconds: 1));
     // Observable.fromFuture(Future.value('future_hello'));
     // Observable.just('hello');
-    Observable.periodic(Duration(seconds: 2),(x) => x.toString());
+    // Observable.periodic(Duration(seconds: 2),(x) => x.toString());
     _observable.listen(_onData);
+
+    // PublishSubject<String> _subject = PublishSubject<String>();
   }
 
-  void _onData(data){
+  void _onData(data) {
     print('$data');
+    setState(() {
+      _listData.add('$data');
+    });
   }
 
   @override
@@ -30,7 +38,7 @@ class _RxDartDemoState extends State<RxDartDemo> {
       ),
       body: Center(
         child: Text(
-          'LayoutDemo',
+          _listData.toString(),
           style: TextStyle(fontSize: 18),
         ),
       ),

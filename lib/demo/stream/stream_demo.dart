@@ -27,6 +27,8 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
 
   String _data = '...';
 
+  Stream _newStream;
+
   @override
   void dispose() {
     _streamControllerDemo.close();
@@ -37,11 +39,17 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
   void initState() {
     super.initState();
     print('Creata a stream.');
-    // Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+    Stream<String> _streamDemo = Stream.fromFuture(fetchData());
+    _newStream = _streamDemo.where(
+      (value){
+        return value.length > 8;
+      }
+    );
+    _newStream.listen(onData, onError: onError, onDone: onDone);
     // _streamControllerDemo = StreamController();
     ///多次订阅：多播
     _streamControllerDemo = StreamController.broadcast();
-    _sinkDemo = _streamControllerDemo.sink;
+    // _sinkDemo = _streamControllerDemo.sink;
     print('Strat listening on a stream.');
     // _subscriptionDemo = _streamDemo.listen(onData,onError: onError, onDone:onDone);
     _subscriptionDemo = _streamControllerDemo.stream
@@ -51,7 +59,7 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
     print('Initialize completed.');
   }
 
-  void onData(String data) {
+  void onData(dynamic data) {
     print('$data');
     setState(() {
       _data = data;
@@ -97,6 +105,7 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
     String data = await fetchData();
     // _streamControllerDemo.add(data);
     _sinkDemo.add(data);
+    // _sinkDemo.
   }
 
   @override
@@ -106,14 +115,14 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Text('$_data'),
-            StreamBuilder(
-              stream: _streamControllerDemo.stream,
-              initialData: '...',
-              builder: (context,snapshot){
-                return Text('${snapshot.data}');
-              },
-            ),
+            Text('$_data'),
+            // StreamBuilder(
+              // stream: _streamControllerDemo.stream,
+            //   initialData: '...',
+            //   builder: (context,snapshot){
+            //     return Text('${snapshot.data}');
+            //   },
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
