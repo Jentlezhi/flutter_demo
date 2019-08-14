@@ -24,25 +24,44 @@ class _RxDartDemoState extends State<RxDartDemo> {
     // _observable.every((item) => item < 6).asObservable().listen(_onData);
 
     ///先订阅，再添加数据
-    PublishSubject<String> _subject = PublishSubject<String>();
+    //   PublishSubject<String> _subject = PublishSubject<String>();
+    //   _subject.listen(_onDataOne);
+    //   _subject.add('one');
+    //   _subject.listen(_onData);
+    //   _subject.add('two');
+    //   _subject.add('three');
+    // }
+
+    ///
+    BehaviorSubject<String> _subject = BehaviorSubject<String>();
     _subject.listen(_onDataOne);
     _subject.add('one');
-    _subject.listen(_onData);
     _subject.add('two');
-    _subject.add('three');
+    ///由于我们在add(’two‘)之后才开始收听，所以将会收到最新的value。
+    _subject.listen(_onDataTwo);
+    // _subject.listen(_onData);
+    // _subject.add('two');
+    // _subject.add('three');
   }
 
   void _onData(data) {
     print('$data');
     setState(() {
-      _listData.add('$data');
+      _listData.add('onData:$data');
     });
   }
 
-    void _onDataOne(data) {
+  void _onDataOne(data) {
     print('onDataOne:$data');
     setState(() {
-      _listData.add('$data');
+      _listData.add('onDataOne:$data');
+    });
+  }
+
+  void _onDataTwo(data) {
+    print('onDataTwo:$data');
+    setState(() {
+      _listData.add('onDataTwo:$data');
     });
   }
 
@@ -52,10 +71,13 @@ class _RxDartDemoState extends State<RxDartDemo> {
       appBar: AppBar(
         title: Text('RxDart'),
       ),
-      body: Center(
-        child: Text(
-          _listData.toString(),
-          style: TextStyle(fontSize: 18),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+                child: Text(
+            _listData.toString(),
+            style: TextStyle(fontSize: 18),
+          ),
         ),
       ),
     );
