@@ -32,16 +32,22 @@ class _RxDartDemoState extends State<RxDartDemo> {
     //   _subject.add('three');
     // }
 
-    ///
-    BehaviorSubject<String> _subject = BehaviorSubject<String>();
-    _subject.listen(_onDataOne);
-    _subject.add('one');
-    _subject.add('two');
-    ///由于我们在add(’two‘)之后才开始收听，所以将会收到最新的value。
-    _subject.listen(_onDataTwo);
-    // _subject.listen(_onData);
+    ///BehaviorSubject
+    // BehaviorSubject<String> _subject = BehaviorSubject<String>();
+    // _subject.listen(_onDataOne);
+    // _subject.add('one');
     // _subject.add('two');
-    // _subject.add('three');
+
+    ///只要有数据流就会调用，不关心调用顺序，但是设置最大接收数据时候需先添加 再订阅
+    ReplaySubject _subject = ReplaySubject<String>(maxSize: 2);
+
+    _subject.add('hello');
+    _subject.add('hi');
+    _subject.add('hola');
+
+    _subject.listen(_onData);
+    _subject.listen(_onDataOne);
+
   }
 
   void _onData(data) {
@@ -74,7 +80,7 @@ class _RxDartDemoState extends State<RxDartDemo> {
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Container(
-                child: Text(
+          child: Text(
             _listData.toString(),
             style: TextStyle(fontSize: 18),
           ),

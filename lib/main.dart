@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'demo/bloc/bloc_demo.dart';
 import 'demo/bottom_sheet_demo.dart';
 import 'demo/bottom_sheet_dialog.dart';
 import 'demo/build_context_demo.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       /// 脚手架
           // home: NavigatorDemo(),
-          initialRoute: '/rxdart',
+          initialRoute: '/bloc',
           routes: {
             '/':(BuildContext context) => BottomSheetDialog(),
             '/list':(BuildContext context) => ListViewDemo(),
@@ -54,6 +55,8 @@ class MyApp extends StatelessWidget {
             '/scoped_state_management': (BuildContext context) => ScopedModelStateManageMent(),
             '/stream': (BuildContext context) => StreamDemo(),
             '/rxdart': (BuildContext context) => RxDartDemo(),
+            '/bloc': (BuildContext context) => BlocDemo(),
+
           },
       //  home: Scaffold(
       //    appBar: AppBar(
