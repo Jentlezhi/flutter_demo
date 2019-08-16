@@ -31,6 +31,7 @@ class _AnimatinoDemoState extends State<AnimatinoDemo>
       print("${_animationController.value}");
       setState(() {});
     });
+
     ///开始播放动画
     // _animationController.forward();
   }
@@ -71,12 +72,14 @@ class _AnimatinoDemoState extends State<AnimatinoDemo>
 }
 
 class AnimatedHeart extends AnimatedWidget {
+  String _msg = '';
   final List animations;
   final AnimationController animationController;
   AnimatedHeart({
     this.animations,
     this.animationController,
   }) : super(listenable: animationController);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,18 +87,24 @@ class AnimatedHeart extends AnimatedWidget {
         title: Text('Animation'),
       ),
       body: Center(
-        child: IconButton(
-          icon: Icon(Icons.favorite),
-          // iconSize: _animationController.value,
-          iconSize: animations[0].value,
-          color: animations[1].value,
-          onPressed: () {
-            if (animationController.status == AnimationStatus.completed) {
-              animationController.reverse();
-            } else {
-              animationController.forward();
-            }
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.favorite),
+              // iconSize: _animationController.value,
+              iconSize: animations[0].value,
+              color: animations[1].value,
+              onPressed: () {
+                if (animationController.status == AnimationStatus.completed) {
+                  animationController.reverse();
+                } else {
+                  animationController.forward();
+                }
+              },
+            ),
+            Text('$_msg'),
+          ],
         ),
       ),
     );

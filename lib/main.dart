@@ -15,6 +15,8 @@ import 'demo/grid_view_build.dart';
 import 'demo/grid_view_demo.dart';
 import 'demo/grid_view_extent.dart';
 import 'demo/http/http_demo.dart';
+import 'demo/i18n/i18n_demo.dart';
+import 'demo/i18n/map/localization_demo.dart';
 import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
 import 'demo/material_components.dart';
@@ -26,6 +28,7 @@ import 'demo/state/state_management_demo.dart';
 import 'demo/stepper_demo.dart';
 import 'demo/stream/stream_demo.dart';
 import 'demo/view_demo.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() => runApp(MyApp());
 // void main(){
@@ -40,9 +43,23 @@ class MyApp extends StatelessWidget {
     return DefaultTabController(
       length: 7,
       child: MaterialApp(
+        // locale: Locale('en', 'US'),
+        locale: Locale('zh', 'CN'),
+        localizationsDelegates: [
+          LocalizationDemoDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en', 'US'), // English
+          const Locale('zh', 'CN'), // 简体中文
+          const Locale('zh', 'Hans'),
+          // ... other locales the app supports
+        ],
+
         /// 脚手架
         // home: NavigatorDemo(),
-        initialRoute: '/animation',
+        initialRoute: '/i18n',
         routes: {
           '/': (BuildContext context) => BottomSheetDialog(),
           '/list': (BuildContext context) => ListViewDemo(),
@@ -63,7 +80,7 @@ class MyApp extends StatelessWidget {
           '/bloc': (BuildContext context) => BlocDemo(),
           '/http': (BuildContext context) => HttpDemo(),
           '/animation': (BuildContext context) => AnimatinoDemo(),
-          
+          '/i18n': (BuildContext context) => I18nDemo(),
         },
         //  home: Scaffold(
         //    appBar: AppBar(
