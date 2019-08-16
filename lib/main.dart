@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'demo/animation/animaiton_demo.dart';
 import 'demo/bloc/bloc_demo.dart';
 import 'demo/bottom_sheet_demo.dart';
 import 'demo/bottom_sheet_dialog.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         /// 脚手架
         // home: NavigatorDemo(),
-        initialRoute: '/http',
+        initialRoute: '/animation',
         routes: {
           '/': (BuildContext context) => BottomSheetDialog(),
           '/list': (BuildContext context) => ListViewDemo(),
@@ -61,6 +62,8 @@ class MyApp extends StatelessWidget {
           '/rxdart': (BuildContext context) => RxDartDemo(),
           '/bloc': (BuildContext context) => BlocDemo(),
           '/http': (BuildContext context) => HttpDemo(),
+          '/animation': (BuildContext context) => AnimatinoDemo(),
+          
         },
         //  home: Scaffold(
         //    appBar: AppBar(
