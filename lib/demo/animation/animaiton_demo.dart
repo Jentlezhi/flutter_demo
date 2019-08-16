@@ -22,14 +22,15 @@ class _AnimatinoDemoState extends State<AnimatinoDemo>
       vsync: this,
     );
 
-  _curve = CurvedAnimation(parent: _animationController,curve: Curves.bounceInOut);
-  _animation = Tween(begin: 32.0,end: 100.0).animate(_curve);
-  _colorAnimation = ColorTween(begin: Colors.red,end: Colors.red[900]).animate(_curve);
-  _animationController.addListener(() {
+    _curve = CurvedAnimation(
+        parent: _animationController, curve: Curves.bounceInOut);
+    _animation = Tween(begin: 32.0, end: 100.0).animate(_curve);
+    _colorAnimation =
+        ColorTween(begin: Colors.red, end: Colors.red[900]).animate(_curve);
+    _animationController.addListener(() {
       print("${_animationController.value}");
       setState(() {});
     });
-
     ///开始播放动画
     // _animationController.forward();
   }
@@ -42,6 +43,42 @@ class _AnimatinoDemoState extends State<AnimatinoDemo>
 
   @override
   Widget build(BuildContext context) {
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text('Animation'),
+    //   ),
+    //   body: Center(
+    //     child: IconButton(
+    //       icon: Icon(Icons.favorite),
+    //       // iconSize: _animationController.value,
+    //       iconSize: _animation.value,
+    //       color: _colorAnimation.value,
+    //       onPressed: () {
+    //         if (_animationController.status == AnimationStatus.completed) {
+    //           _animationController.reverse();
+    //         } else {
+    //           _animationController.forward();
+    //         }
+    //       },
+    //     ),
+    //   ),
+    // );
+    return AnimatedHeart(
+      animations: [_animation, _colorAnimation],
+      animationController: _animationController,
+    );
+  }
+}
+
+class AnimatedHeart extends AnimatedWidget {
+  final List animations;
+  final AnimationController animationController;
+  AnimatedHeart({
+    this.animations,
+    this.animationController,
+  }) : super(listenable: animationController);
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Animation'),
@@ -50,13 +87,13 @@ class _AnimatinoDemoState extends State<AnimatinoDemo>
         child: IconButton(
           icon: Icon(Icons.favorite),
           // iconSize: _animationController.value,
-          iconSize: _animation.value,
-          color: _colorAnimation.value,
+          iconSize: animations[0].value,
+          color: animations[1].value,
           onPressed: () {
-            if (_animationController.status == AnimationStatus.completed) {
-              _animationController.reverse();
+            if (animationController.status == AnimationStatus.completed) {
+              animationController.reverse();
             } else {
-              _animationController.forward();
+              animationController.forward();
             }
           },
         ),
