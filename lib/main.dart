@@ -16,7 +16,7 @@ import 'demo/grid_view_demo.dart';
 import 'demo/grid_view_extent.dart';
 import 'demo/http/http_demo.dart';
 import 'demo/i18n/i18n_demo.dart';
-import 'demo/i18n/map/localization_demo.dart';
+import 'demo/i18n/intl/intl_localization_demo.dart';
 import 'demo/layout_demo.dart';
 import 'demo/list_view_demo.dart';
 import 'demo/material_components.dart';
@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
     return DefaultTabController(
       length: 7,
       child: MaterialApp(
-        // locale: Locale('en', 'US'),
-        locale: Locale('zh', 'CN'),
+        locale: Locale('en', 'US'),
+        // locale: Locale('zh', 'CN'),
         localizationsDelegates: [
           LocalizationDemoDelegate(),
           GlobalMaterialLocalizations.delegate,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'map/localization_demo.dart';
+import 'intl/intl_localization_demo.dart';
 
 class I18nDemo extends StatelessWidget {
   @override
@@ -17,7 +17,7 @@ class I18nDemo extends StatelessWidget {
             Text('${locale.languageCode}'),
             SizedBox(height: 10.0),
             Text(
-              Localizations.of(context, LocalizationDemo).title,
+              IntlDemoLocalizations.of(context).greet('Jentle'),
               style: Theme.of(context).textTheme.title,
             ),
           ],

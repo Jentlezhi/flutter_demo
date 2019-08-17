@@ -26,6 +26,7 @@ dependencies:
   gbk2utf8: ^1.0.1
   flutter_localizations:
     sdk: flutter
+  intl_translation: ^0.17.5
 
 dev_dependencies:
   flutter_test:
