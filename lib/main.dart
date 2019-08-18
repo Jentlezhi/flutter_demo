@@ -7,6 +7,7 @@ import 'demo/bottom_sheet_dialog.dart';
 import 'demo/build_context_demo.dart';
 import 'demo/card_demo.dart';
 import 'demo/chip_demo.dart';
+import 'demo/cupertino/cupertion_demo.dart';
 import 'demo/data_table.dart';
 import 'demo/dialog_alert_demo.dart';
 import 'demo/dialog_demo.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
 
         /// 脚手架
         // home: NavigatorDemo(),
-        initialRoute: '/i18n',
+        initialRoute: '/cupertion',
         routes: {
           '/': (BuildContext context) => BottomSheetDialog(),
           '/list': (BuildContext context) => ListViewDemo(),
@@ -81,6 +82,7 @@ class MyApp extends StatelessWidget {
           '/http': (BuildContext context) => HttpDemo(),
           '/animation': (BuildContext context) => AnimatinoDemo(),
           '/i18n': (BuildContext context) => I18nDemo(),
+          '/cupertion': (BuildContext context) => CupertionDemo(),
         },
         //  home: Scaffold(
         //    appBar: AppBar(
