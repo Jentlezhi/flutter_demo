@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jentle_flutter/demo/basic_demo.dart';
+import 'package:jentle_flutter/theme/theme_data.dart';
 import 'demo/animation/animaiton_demo.dart';
 import 'demo/bloc/bloc_demo.dart';
 import 'demo/bottom_sheet_demo.dart';
@@ -44,6 +45,11 @@ class MyApp extends StatelessWidget {
     return DefaultTabController(
       length: 7,
       child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Demo'),
+          ),
+        ),
         locale: Locale('en', 'US'),
         // locale: Locale('zh', 'CN'),
         localizationsDelegates: [
@@ -60,9 +66,9 @@ class MyApp extends StatelessWidget {
 
         /// 脚手架
         // home: NavigatorDemo(),
-        initialRoute: '/cupertion',
+        initialRoute: 'themeData',
         routes: {
-          '/': (BuildContext context) => BottomSheetDialog(),
+          // '/': (BuildContext context) => BottomSheetDialog(),
           '/list': (BuildContext context) => ListViewDemo(),
           '/about': (BuildContext context) => Page(
                 title: 'About',
@@ -83,6 +89,7 @@ class MyApp extends StatelessWidget {
           '/animation': (BuildContext context) => AnimatinoDemo(),
           '/i18n': (BuildContext context) => I18nDemo(),
           '/cupertion': (BuildContext context) => CupertionDemo(),
+          '/themeData': (BuildContext context) => ThemeDataDemo(),
         },
         //  home: Scaffold(
         //    appBar: AppBar(
@@ -165,7 +172,7 @@ class MyApp extends StatelessWidget {
         //   //    ],
         //   //  ),
         //  ),
-        theme: ThemeData(primaryColor: Colors.red),
+        theme: ThemeData(primaryColor: Colors.red, accentColor: Colors.green),
       ),
     );
   }
